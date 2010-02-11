@@ -1,5 +1,5 @@
 =============================================================
-        ToolBox V0.1
+        ToolBox V0.2
                 Brought to you by xiaoranzzz@myplace
 =============================================================
         pq      : Norton PartitionMagic 8.0
@@ -9,6 +9,8 @@
         ghost7  : Norton Ghost 7.0
         ghost8  : Norton Ghost 8.3
         vc      : Volkov Commander 4.99
+        mbrwizd : MBR Wizard 2.0b
+        bootpart: Boot partition
 =============================================================
         Type "toolbox" to display this
 =============================================================
