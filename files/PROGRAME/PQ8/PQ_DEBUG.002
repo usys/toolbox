@@ -1,0 +1,320 @@
+PowerQuest PartitionInfo -- DOS engine edition.
+Date Generated: 10/07/2008 11:48:48
+
+CPU Vendor: "GenuineIntel"
+CPU Signature: 00000633    CPU Features 0781abfd
+
+
+****************************  CONFIG.SYS  ****************************
+
+[MENU]
+MENUITEM=M1,Boot
+MENUITEM=M2,Boot with CD-ROM support
+MENUITEM=M0,Fail Safe
+MENUITEM=M3,Reboot
+MENUITEM=M4,Power Off
+MENUDEFAULT=M1,5
+
+[M1]
+INCLUDE M0
+device=C:\SYS\himem.sys /testmem:off /A20CONTROL:ON 
+device=C:\DOS\emm386.exe RAM=C900-EC00 M8
+rem device=C:\SYS\himem.sys /testmem:off /A20CONTROL:ON /V
+rem device=C:\DOS\emm386.exe VERBOSE RAM=C900-EC00 M8
+devicehigh=C:\sys\ansi.sys
+
+[M2]
+INCLUDE M1
+INCLUDE CD
+
+[M0]
+[M3]
+[M4]
+
+[CD]
+DEVICEHIGH=C:\SYS\VIDE-CDD.SYS /D:IDE-CD
+
+[COMMON]
+SHELL=C:\COMMAND.COM /P /E:640
+DOS=HIGH,UMB,AUTO
+NUMLOCK=ON
+FCBSHIGH=4,0
+FILESHIGH=30
+BUFFERSHIGH=20,0
+LASTDRIVEHIGH=32
+STACKSHIGH=9,256
+
+***************************  AUTOEXEC.BAT  ***************************
+
+@ECHO OFF
+SET PATH=C:\DOS;C:\BAT
+SET DIRCMD=/OGN /4
+SET PROMPT=$P$G
+BREAK ON
+LFNFOR ON
+
+goto %CONFIG%
+
+:M0
+goto end
+
+:M1
+LH c:\dos\ctmouse
+LH C:\DOS\DOSKEY /INSERT
+LH C:\DOS\DOSLFN
+LH C:\DOS\SMARTDRV 4096 2048 /X
+goto END
+
+:M2
+LH C:\DOS\SHSUCDX /D:?IDE-CD
+goto M1
+
+:M3
+C:\DOS\SHUTDOWN R
+goto Exit
+
+:M4
+c:\dos\shutdown s
+goto Exit
+
+:END
+cls
+C:\BAT\ToolBox.bat
+
+:Exit
+
+****************************  END PREPEND  ***************************
+
+Running Program - c:\programe\pq8\PQMAGIC.OVL
+
+BiosExtensions: 0x3000 Subsets (0x00000007): Access Lock/Eject EDD
+EGeo 0x0002 20 16 63 20480 0 512
+Extended BIOS calls not used
+
+============================================================================
+Disk 0:  20 Cylinders, 16 Heads, 63 Sectors/Track.
+BiosExtensions: 0x3000 Subsets (0x00000007): Access Lock/Eject EDD
+The BIOS supports INT 13h extensions for this drive.
+============================ Partition Tables ==============================
+Partition          -----Begin----      ------End-----     Start     Num
+Sector     # Boot   Cyl Head Sect  FS   Cyl Head Sect     Sect      Sects
+---------- - ----  ---- ---- ----  --  ---- ---- ----  ---------- ----------
+         0 0 80       0    1    1  01    19   15   63          63      20097
+BiosExtensions: 0x3000 Subsets (0x00000007): Access Lock/Eject EDD
+EGeo 0x0002 243 16 63 245760 0 512
+Extended BIOS calls not used
+
+============================================================================
+Disk 1:  243 Cylinders, 16 Heads, 63 Sectors/Track.
+BiosExtensions: 0x3000 Subsets (0x00000007): Access Lock/Eject EDD
+The BIOS supports INT 13h extensions for this drive.
+============================ Partition Tables ==============================
+Partition          -----Begin----      ------End-----     Start     Num
+Sector     # Boot   Cyl Head Sect  FS   Cyl Head Sect     Sect      Sects
+---------- - ----  ---- ---- ----  --  ---- ---- ----  ---------- ----------
+Info: No partition table present on this drive.
+BiosExtensions: 0x3000 Subsets (0x00000007): Access Lock/Eject EDD
+EGeo 0x0000 28262399 16 63 83886080 0 512
+Disk Geometry requires extended BIOS support
+
+============================================================================
+Disk 2:  5221 Cylinders, 255 Heads, 63 Sectors/Track.
+BiosExtensions: 0x3000 Subsets (0x00000007): Access Lock/Eject EDD
+The BIOS supports INT 13h extensions for this drive.
+============================ Partition Tables ==============================
+Partition          -----Begin----      ------End-----     Start     Num
+Sector     # Boot   Cyl Head Sect  FS   Cyl Head Sect     Sect      Sects
+---------- - ----  ---- ---- ----  --  ---- ---- ----  ---------- ----------
+         0 0 80   [   0    1    1] 0C [1023  254   63]         63   83875302 [Large Drive Placeholders]
+                      0    1    1      5220  254   63                         Actual Values
+
+
+==================================================================================
+Disk 0:  9.8 Megabytes
+============================= Partition Information ==============================
+Volume        Partition                         Partition        Start     Total
+Letter:Label  Type            Status   Size MB  Sector     #     Sector    Sectors
+------------- --------------- -------- -------- ---------- - ---------- ----------
+C:PQ          FAT12           Pri,Boot      9.8          0 0         63      20097
+
+
+==================================================================================
+Disk 1:  119.6 Megabytes
+============================= Partition Information ==============================
+Volume        Partition                         Partition        Start     Total
+Letter:Label  Type            Status   Size MB  Sector     #     Sector    Sectors
+------------- --------------- -------- -------- ---------- - ---------- ----------
+              Unallocated     Pri         119.6       None -          0     244944
+
+
+==================================================================================
+Disk 2:  40954.8 Megabytes
+============================= Partition Information ==============================
+Volume        Partition                         Partition        Start     Total
+Letter:Label  Type            Status   Size MB  Sector     #     Sector    Sectors
+------------- --------------- -------- -------- ---------- - ---------- ----------
+D:DATA        FAT32X          Pri,Boot  40954.7          0 0         63   83875302
+
+
+
+========================================================================
+Boot Sector for drive C: Drive 1, Starting Sector: 63, Type: FAT
+========================================================================
+1. Jump:                    EB 3C 90
+2. OEM Name:                MSWIN4.1
+3. Bytes Per Sector:        512
+4. Sectors Per Cluster:     8
+5. Reserved Sectors:        8
+6. Number of FAT's:         2
+7. Root Dir Entries:        512
+8. Total Sectors:           20097  (0x4E81)
+9. Media Descriptor:        0xF8
+10. Sectors Per FAT:        8
+11. Sectors Per Track:      63  (0x3F)
+12. Number of Heads:        16  (0x10)
+13. Hidden Sectors:         63  (0x3F)
+14. Big Total Sectors:      0  (0x0)
+15. Drive ID:               0x80
+16. Dirty Flag:             0x00
+17. Extended Boot Sig:      0x29  BS_FAT
+18. Serial Number:          0x47186013
+19. Volume Name:            PQ         
+20. File System Type:       FAT12   
+21. Boot Signature:         0xAA55
+
+
+========================================================================
+Boot Sector for drive D: Drive 3, Starting Sector: 63, Type: FAT32
+========================================================================
+1. Jump:                    EB 58 90
+2. OEM Name:                MSWIN4.1
+3. Bytes Per Sector:        512
+4. Sectors Per Cluster:     64
+5. Reserved Sectors:        36
+6. Number of FAT's:         2
+7. Reserved:                0x0000
+8. Reserved:                0x0000
+9. Media Descriptor:        0xF8
+10. Sectors Per FAT:        0
+11. Sectors Per Track:      63  (0x3F)
+12. Number of Heads:        255  (0xFF)
+13. Hidden Sectors:         63  (0x3F)
+14. Big Total Sectors:      83875302  (0x4FFD5E6)
+15. Big Sectors Per FAT:    10238
+16. Extended Flags:         0x0000
+17. FS Version:             0
+18. First Cluster of Root:  2 (0x2)
+19. FS Info Sector:         1
+20. Backup Boot Sector:     6
+21. Reserved:               0x00 00 00 00 00 00 00 00 00 00 00 00 
+22. Drive ID:               0x80
+23. Reserved for NT:        0x00
+24. Extended Boot Sig:      0x29
+25. Serial Number:          0x47185407
+26. Volume Name:            DATA       
+27. File System Type:       FAT32   
+28. Boot Signature:         0xAA55
+
+EMM386 is running
+}
+Exiting enStartEngine...  Return value: 0  Time = 0:06
+Reading FAT - 8 sectors at 8
+Creating BLOCK_TABLE with 1000 available entries.
+Destroying BLOCK_TABLE with 3 used entries.
+Reading FAT - 10237 sectors at 36
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 280 used entries.
+[Error]: errno = 1. No such file or directory
+pqFileOpen - File: C:\boot.ini. Used OS I/O. Flags 0x1002. Open failed.
+pqFileOpen: Partition type: 0x1, FS type: 0x1, DriveLetter: C.
+BootIni::Init:  Error 301 opening the file \boot.ini.
+
+
+ntRegGetProductType ... (C)
+[Error]: errno = 1. No such file or directory
+pqFileOpen - File: C:\winnt\system32\config\system. Used OS I/O. Flags 0x2. Open failed.
+pqFileOpen: Partition type: 0x1, FS type: 0x1, DriveLetter: C.
+
+ntRegGetProductType: Unable to determine the product type 2.VDrive::CreatePartition. . .begin
+Initializing batch operation
+Changing freespace partition.
+Assigning an mbr ordinal.
+Assigning drive letter.
+Updating extended space.
+Adding freespace partitions - deleting existing freespace partitions.
+Resetting legal operation flags.
+Creating the batch operation.
+VDrive::CreatePartition. . .end
+pqFileDelete - File: c:\programe\pq8\PQ_BATCH.005. Result == 504
+DOS_FILE::Rename: pqRet = 504
+[Error]: errno = 1. No such file or directory
+pqFileDelete - File: c:\programe\pq8\PQ_BATCH.004. Result == 504
+DOS_FILE::Rename: pqRet = 504
+[Error]: errno = 1. No such file or directory
+pqFileDelete - File: c:\programe\pq8\PQ_BATCH.003. Result == 504
+DOS_FILE::Rename: pqRet = 504
+[Error]: errno = 1. No such file or directory
+pqFileDelete - File: c:\programe\pq8\PQ_BATCH.002. Result == 504
+DOS_FILE::Rename: pqRet = 504
+[Error]: errno = 1. No such file or directory
+pqFileDelete - File: c:\programe\pq8\PQ_BATCH.001. Result == 504
+DOS_FILE::Rename: pqRet = 504
+[Error]: errno = 1. No such file or directory
+Batch File - c:\programe\pq8\PQ_BATCH.PQB
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+	Begin Batch Execution ...
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+	Beginning Execution of batch operation 1 of 2 ...
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+建立分割磁區：*:
+    (Ext2, 主要的磁區, 119.6 MB 於磁碟: 2)
+
+enCreate (*) ...
+enFormat (*) ...pqLogLock (pqhandle == 0) ...
+pqLogLock complete (pqRet == 0)
+pqLogUnlock (pqhandle == 0) ...
+pqLogUnlock complete (pqRet == 0)
+
+enFormat complete (pqRet == 0)REBOOT_MANAGER::PartitionCreated (Disk = 1 StartSector = 63)
+REBOOT_MANAGER::PartitionHidden (Disk = 1 StartSector = 63) - cancelled out previous create or unhide
+[Error]: errno = 1. No such file or directory
+pqFileOpen - File: C:\BOOT.INI. Used OS I/O. Flags 0x1004. Open failed.
+pqFileOpen: Partition type: 0x1, FS type: 0x1, DriveLetter: C.
+UpdateNTBootFiles: Unable to update boot.ini on partition C
+
+enCreate complete (pqRet == 0)
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+	Ending Execution of batch operation 1 of 2 ...
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+	Beginning Execution of batch operation 2 of 2 ...
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+設定分割磁區為啟動： *: 
+   (Ext2, 主要的磁區, 119.6 MB 在磁碟 2上)
+
+enSetActive ...
+enSetActive complete (pqRet == 0)
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+	Ending Execution of batch operation 2 of 2 ...
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+TagBatchFileProcessed ... 
+TagBatchFileProcessed ... SWITCH_WRB is not set
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+	End Batch Execution (pqRet == 0)
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+enReboot ...
+pqReboot ...
+DbgMgr->Uninit
